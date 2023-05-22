@@ -61,6 +61,7 @@ const userController = {
   putUser: (req, res, next) => {
     const { name } = req.body
     const { file } = req
+    console.log(name)
     return Promise.all([
       User.findByPk(req.params.id),
       imgurFileHandler(file)

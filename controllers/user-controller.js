@@ -61,7 +61,6 @@ const userController = {
   putUser: (req, res, next) => {
     const { name } = req.body
     const { file } = req
-    console.log(name)
     return Promise.all([
       User.findByPk(req.params.id),
       imgurFileHandler(file)
@@ -70,7 +69,7 @@ const userController = {
         if (!user) throw new Error('user do not exists!')
         return user.update({
           name,
-          image: filePath || user.dataValues.image
+          image: filePath || user.image
         })
       })
       .then(() => {

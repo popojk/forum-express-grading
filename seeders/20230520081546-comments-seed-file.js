@@ -8,7 +8,7 @@ module.exports = {
       { type: queryInterface.sequelize.QueryTypes.SELECT }
     )
     const restaurants = await queryInterface.sequelize.query(
-      'SELECT id FROM Users',
+      'SELECT id FROM Restaurants',
       { type: queryInterface.sequelize.QueryTypes.SELECT }
     )
     await queryInterface.bulkInsert('Comments',

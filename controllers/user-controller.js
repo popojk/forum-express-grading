@@ -68,7 +68,7 @@ const userController = {
         if (!user) throw new Error('user do not exists!')
         return user.update({
           name,
-          image: filePath || user.dataValues.image
+          image: filePath || user.image
         })
       })
       .then(() => {

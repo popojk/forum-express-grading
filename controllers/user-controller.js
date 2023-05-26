@@ -38,12 +38,17 @@ const userController = {
   getUser: (req, res, next) => {
     return User.findByPk(req.params.id, {
       nest: true,
-      include: { model: Comment, include: Restaurant }
+      include: [{ model: Comment, include: Restaurant },
+        { model: Restaurant, as: 'FavoritedRestaurants' },
+        { model: User, as: 'Followers' },
+        { model: User, as: 'Followings' }
+      ]
     })
       .then(user => {
         if (!user) throw new Error('user do not exists!')
+        user = user.toJSON()
         console.log(user)
-        res.render('users/profile', { user: user.toJSON() })
+        res.render('users/profile', { user })
       })
       .catch(err => next(err))
   },
